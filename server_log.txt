@@ -1,0 +1,5 @@
+2024-11-24 05:25:29,274 - INFO - [33mServer listening at 0.0.0.0:12345.[0m
+2024-11-24 05:28:07,311 - INFO - Connection established from ('127.0.0.1', 42486).
+2024-11-24 05:28:07,313 - INFO - Data received from ('127.0.0.1', 42486): {'hostname': 'training', 'key': 'iPWJeM6GJbezJxZApTADvwB-BlLJk4WmigD-oE0aDhc=', 'active_users': 'training seat0        2024-11-21 02:30 (login screen)\ntraining tty2         2024-11-21 02:30 (tty2)\n', 'mac_address': '00:0C:29:75:2A:69'}
+2024-11-24 05:30:27,647 - INFO - Connection established from ('127.0.0.1', 40558).
+2024-11-24 05:30:27,648 - INFO - Data received from ('127.0.0.1', 40558): {'hostname': 'training', 'key': 'A9QFgnK6dm_xmC1dSP9KC1KbZ9wpL-P7-GSzAt21PdY=', 'active_users': 'training seat0        2024-11-21 02:30 (login screen)\ntraining tty2         2024-11-21 02:30 (tty2)\n', 'mac_address': '00:0C:29:75:2A:69'}

